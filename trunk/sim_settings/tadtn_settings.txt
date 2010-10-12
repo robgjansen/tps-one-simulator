@@ -1,0 +1,87 @@
+Scenario.name = fcontact_scenario: seed=%%MovementModel.rngSeed%%; threshold=%%Anonymity.anonymityThreshold%%; anongroups=%%Anonymity.numberOfAnonymityGroups%%; movement=%%Group.movementModel%%; hosts=%%Group.nrofHosts%%; AnonymitySystem=%%Anonymity.anonymitySystem%%;
+Scenario.nrofHostGroups = 1
+Scenario.endTime = 43200
+Scenario.updateInterval = 0.1
+Scenario.simulateConnections = true
+
+# run with arguments: -b 60 path/to/tadtn_settings.txt > rw_25.log
+# change the following lines for different number of nodes
+Group.nrofHosts = 25
+Events1.hosts = 0,25
+Report.reportDir = ../../data/sim_v4/Epidemic/MapBased/mb_25_reports/
+
+# run-indexing for multiple runs at a time: RandomWaypoint || MapBasedMovement
+Group.movementModel = MapBasedMovement
+Group.router = EpidemicRouter
+Anonymity.numberOfAnonymityGroups = 1
+#Anonymity.anonymityThreshold = 1
+Anonymity.anonymityOn = false
+Anonymity.anonymitySystem = None
+MovementModel.rngSeed = [512133325; 452823721; 303630829; 778840432; 649426301; 218957465; 731195653; 736264926; 82107652; 367838133]
+
+
+###Anonymity.anonymityOn = true
+###Anonymity.numberOfAnonymityGroups = 4
+###Anonymity.anonymitySystem = [None; RandomPivot; ThresholdPivot;]
+
+###Group.router = FirstContactRouter
+###Group.movementModel = [RandomWaypoint; MapBasedMovement;]
+###Group.nrofHosts = 100
+#Group.bufferSize = 5M #exclude for infinite buffer
+#Group.msgTtl = 60 #exclude for infinite TTL
+Group.transmitRange = 200
+Group.transmitSpeed = 250k
+Group.speed = 0.5, 1.5
+Group.waitTime = 0, 120
+Group1.groupID = n
+Group1.okMaps = 1, 2, 3, 4
+
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+Events1.prefix = M
+Events1.time = 0, 36000
+Events1.interval = 25,35
+Events1.size = 500k, 1M
+
+#MovementModel.rngSeed = [512133325; 452823721; 303630829; 778840432; 649426301; 218957465; 731195653; 736264926; 82107652; 367838133]
+###MovementModel.rngSeed = 1
+MovementModel.warmup = 3600
+MovementModel.worldSize = 4500, 3400
+
+Report.nrofReports = 5
+Report.warmup = 0
+###Report.reportDir = ../reports/
+Report.report1 = MessageStatsReport
+MessageStatsReport.output = %%Report.reportDir%%Stats_%%Anonymity.numberOfAnonymityGroups%%-%%Group.nrofHosts%%(%%MovementModel.rngSeed%%)_%%Anonymity.anonymitySystem%%.txt
+Report.report2 = MessageDelayReport
+MessageDelayReport.output = %%Report.reportDir%%Delay_%%Anonymity.numberOfAnonymityGroups%%-%%Group.nrofHosts%%(%%MovementModel.rngSeed%%)_%%Anonymity.anonymitySystem%%.txt
+Report.report3 = MessageDeliveryReport
+MessageDeliveryReport.output = %%Report.reportDir%%Delivery_%%Anonymity.numberOfAnonymityGroups%%-%%Group.nrofHosts%%(%%MovementModel.rngSeed%%)_%%Anonymity.anonymitySystem%%.txt
+Report.report4 = MessageLocationReport
+MessageLocationReport.output = %%Report.reportDir%%Location_%%Anonymity.numberOfAnonymityGroups%%-%%Group.nrofHosts%%(%%MovementModel.rngSeed%%)_%%Anonymity.anonymitySystem%%.txt
+MessageLocationReport.granularity = 300
+MessageLocationReport.messages = M101, M201, M301, M401, M501, M601, M701, M801, M901, M1001
+Report.report5 = MessageGraphvizReport
+MessageGraphvizReport.output = %%Report.reportDir%%Graphviz_%%Anonymity.numberOfAnonymityGroups%%-%%Group.nrofHosts%%(%%MovementModel.rngSeed%%)_%%Anonymity.anonymitySystem%%.txt
+
+## Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+## Points Of Interest -specific settings
+PointsOfInterest.poiFile1 = data/ParkPOIs.wkt
+PointsOfInterest.poiFile2 = data/CentralPOIs.wkt
+PointsOfInterest.poiFile3 = data/WestPOIs.wkt
+PointsOfInterest.poiFile4 = data/shops.wkt
+
+#OTHER DEFAULTS
+Optimization.connectionAlg = 2
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+GUI.UnderlayImage.fileName = data/helsinki_underlay.png
+GUI.UnderlayImage.offset = 64, 20
+GUI.UnderlayImage.scale = 4.75
+GUI.UnderlayImage.rotate = -0.015
+GUI.EventLogPanel.nrofEvents = 30

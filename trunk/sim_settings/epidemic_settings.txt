@@ -1,0 +1,24 @@
+Scenario.name = Epidemic_seed=%%MovementModel.rngSeed%%_agroups=%%Anonymity.numberOfAnonymityGroups%%_movement=%%Group.movementModel%%_hosts=%%Group.nrofHosts%%
+Scenario.nrofHostGroups = 1
+
+Anonymity.anonymityOn = true
+Anonymity.numberOfAnonymityGroups = [2; 4; 6; 8; 10]
+
+Group.router = EpidemicRouter
+Group.nrofHosts = 100
+Group.movementModel = [RandomWaypoint; MapBasedMovement; ShortestPathMapBasedMovement; MapRouteMovement]
+Group.routeFile = data/main_roads.wkt
+Group.routeType = 1
+Group1.groupID = node
+Group.transmitRange = 10
+
+Events.nrof = 1
+Events1.hosts = 0,99
+
+MovementModel.rngSeed = 1
+
+Report.nrofReports = 3
+Report.reportDir = reports/
+Report.report1 = AnonymousGroupReport
+Report.report2 = MessageStatsReport
+Report.report3 = DistanceDelayReport

@@ -1,0 +1,19 @@
+Scenario.name = rgroup_scenario: seed=%%MovementModel.rngSeed%%; anongroups=%%Anonymity.numberOfAnonymityGroups%%; movement=%%Group.movementModel%%; hosts=%%Group.nrofHosts%%;
+Scenario.nrofHostGroups = 1
+
+Anonymity.numberOfAnonymityGroups = [2; 4; 6; 8; 10]
+
+Group.nrofHosts = 100
+Group.movementModel = [RandomWaypoint; MapBasedMovement; ShortestPathMapBasedMovement; MapRouteMovement]
+Group.routeFile = data/main_roads.wkt
+Group.routeType = 1
+Group1.groupID = node
+
+Events.nrof = 0
+Events1.hosts = 0,99
+
+MovementModel.rngSeed = 1
+
+Report.nrofReports = 1
+Report.reportDir = reports/
+Report.report1 = AnonymousGroupReport
