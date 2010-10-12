@@ -1,0 +1,29 @@
+Scenario.name = fcontact_scenario: seed=%%MovementModel.rngSeed%%; anongroups=%%Anonymity.numberOfAnonymityGroups%%; movement=%%Group.movementModel%%; hosts=%%Group.nrofHosts%%;
+Scenario.nrofHostGroups = 1
+Scenario.endTime = 43200
+
+Anonymity.anonymityOn = true
+Anonymity.numberOfAnonymityGroups = 100
+
+Group.router = FirstContactRouter
+Group.nrofHosts = 100
+Group.transmitRange = 200
+Group.movementModel = RandomWaypoint
+Group1.groupID = n
+Group1.okMaps = 1, 2
+
+Events.nrof = 1
+Events1.hosts = 0,99
+Events1.time = 0, 36000
+
+MovementModel.rngSeed = 1
+MovementModel.warmup = 3600
+#MovementModel.worldSize = 5000, 5000
+
+#MapBasedMovement.nrofMapFiles = 2
+#MapBasedMovement.mapFile1 = data/roads.wkt
+#MapBasedMovement.mapFile2 = data/pedestrian_paths.wkt
+
+Report.nrofReports = 1
+Report.reportDir = reports/
+Report.report1 = MessageStatsReport

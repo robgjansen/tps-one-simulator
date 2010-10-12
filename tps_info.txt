@@ -1,0 +1,51 @@
+Copyright 2009 Rob Jansen
+Released under GPLv3. See LICENSE.txt for details.
+
+This project implemented anonymity mechanisms into the ONE DTN simulator, and measured specific performance characteristics. The base source code was taken from ONE 1.3.0, available at http://www.netlab.tkk.fi/tutkimus/dtn/theone/. I made several modifications to simulate the scheme described in the paper:
+
+Rob Jansen and Robert Beverly, "Toward Anonymity in Delay Tolerant Networks: Threshold Pivot Scheme", MILCOM 2010.
+
+Changelog:
+
+sim_v5
+========
+-Added threshold instead of always using number of groups as threshold
+
+sim_v4.1
+========
+-Added capability to run any scheme
+-Updated settings to separate file instead of using default settings
+-Updated some settings to more appropirate values
+-Re-ran all experiements with this version, with 10 seeds
+-Added script to parse and compute combined results for all experiments
+
+sim_v4.0
+========
+-Implemented random pivot scheme
+-Changed algorithm to random pivot scheme
+
+sim_v3.0
+========
+-Added euclidean distance for exit node to source at point when message is decrypted
+-Added log of euclidean distance
+-Added script to parse and plot a cdf of distance
+
+sim_v2.0
+========
+-Added anonymous message capabilities.
+-Times are now measured as message transfer times, not node travel times.
+-Messages are "encrypted" to start with, until they travel through every group.
+ At this point, they become "decrypted" and are routed to destination as normal.
+-FirstContact is used without attempts to optimize to who to send the encrypted message
+ (some nodes might not be able to help since its "color" was already removed)
+-Updated cdf generator to handle new logged timestamps
+
+sim_v1.1
+========
+-Updated log parser and cdf generator.
+
+sim_v1.0
+========
+-Anonymous groups only. 
+-No message routing. 
+-Generated logs represent times it takes for a node to meet all groups.
