@@ -1,0 +1,1 @@
+This project is the code used in the simulation of the threshold pivot scheme (TPS) as described in the paper "Toward Anonymity in Delay Tolerant Networks: Threshold Pivot Scheme", by Rob Jansen and Robert Beverly. The paper was published at MILCOM 2010. This is academic code and is released under GPLv3.
